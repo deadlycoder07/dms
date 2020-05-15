@@ -46,7 +46,7 @@ class CustomUser(AbstractUser):
     )
     role = models.CharField(max_length=1, choices=CHOICES)  
     #new        
-    age = models.IntegerField(default= 0)   
+     
     phone = models.CharField(max_length=12, default = "")
 
 class Hospital(models.Model):

@@ -110,6 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ACCOUNT_ADAPTER = 'authentication.adapter.CustomAccountAdapter'
 
 AUTH_USER_MODEL='authentication.CustomUser'
+
+
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
 )
