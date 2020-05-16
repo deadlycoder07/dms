@@ -5,10 +5,12 @@ from rest_framework_jwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
 from django.contrib.auth import authenticate
 from rest_framework.fields import CurrentUserDefault
-class RegistrationSerializer(serializers.ModelSerializer):
+
+
+class RegistrationSerializer(serializers.ModelSerializer): 
 
     class Meta:
-        model=CustomUser
+        model=CustomUser 
         fields=['phone','email','password','role','username']
         extra_kwargs={'password':{'write_only':True}}  
 
@@ -20,12 +22,16 @@ class HospitalRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=Hospital
-        fields=['name','phone','address','registration_no','beds']
-        
+        #fields=['name','phone','address','registration_no','beds']
+        fields=['name','phone','city', 'town', 'registration_no','beds']
+
+
     def create(self,validated_data):
         hospital=Hospital(**validated_data)
         hospital.save()
         return hospital
+
+
 
 JWT_PAYLOAD_HANDLER = api_settings.JWT_PAYLOAD_HANDLER
 JWT_ENCODE_HANDLER = api_settings.JWT_ENCODE_HANDLER        

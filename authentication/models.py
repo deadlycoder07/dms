@@ -42,11 +42,7 @@ class UserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
 
-   # CHOICES = (
-    #    ('H', 'Hospital'),
-     #   ('C', 'Clinic'),
-       
-    #)
+   
     role = models.CharField(max_length=10)      
     phone = models.CharField(max_length=12, default = "")
     email = models.EmailField(
@@ -54,6 +50,7 @@ class CustomUser(AbstractUser):
         max_length=255,
         unique=True
         )
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
@@ -93,7 +90,9 @@ class Hospital(models.Model):
     #new
     name = models.CharField(max_length=100,default='')
     registration_no = models.CharField(max_length=100, default = "")
-    address = models.CharField(max_length=200,default='')
+    #address = models.CharField(max_length=200,default='')
+    city = models.CharField(max_length = 200)
+    town = models.CharField(max_length = 200)
     phone = models.CharField(max_length=13,default='')
     beds = models.IntegerField(default = 0)
 
@@ -106,5 +105,7 @@ class Clinic(models.Model):
     #new
     name = models.CharField(max_length=100,default='')
     registration_no = models.CharField(max_length=100,default='')
-    address = models.CharField(max_length=200,default='')
+    #address = models.CharField(max_length=200,default='')
+    city = models.CharField(max_length = 200)
+    town = models.CharField(max_length = 200)
     phone = models.CharField(max_length=13,default='')
