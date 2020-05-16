@@ -8,7 +8,7 @@ class UserManager(BaseUserManager):
     https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#writing-a-manager-for-a-custom-user-model
     https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#a-full-example
     '''
-    def create_user(self, email,phone,role,password=None):
+    def create_user(self, email,phone,role,username,password=None):
         """
         Create and return a `User` with an email, username and password.
         """
@@ -20,6 +20,7 @@ class UserManager(BaseUserManager):
         )
         user.phone=phone
         user.role=role
+        user.username=username
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -86,7 +87,7 @@ class CustomUser(AbstractUser):
         return self.is_admin
 
 class Hospital(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="hospital_account"
     )
     #new
@@ -99,7 +100,7 @@ class Hospital(models.Model):
 
 class Clinic(models.Model):
     
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="clinic_account"
     )
     #new
