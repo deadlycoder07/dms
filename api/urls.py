@@ -7,4 +7,5 @@ router= routers.DefaultRouter()
 urlpatterns= [
     path('', include(router.urls)),
     path('rest/signup',views.UserRegistrationView.as_view(),name='registerview'),
+    path('rest/signup/hospital',views.HospitalRegistration.as_view(),name='hostpitalregister'),
 ]
